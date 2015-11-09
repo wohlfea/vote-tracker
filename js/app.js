@@ -1,4 +1,6 @@
 /* JS Goes Here */
+var randomPicOne;
+var randomPicTwo;
 var voting = true;
 var imgArray = [['img/bacon.jpg', 'img/bananas.jpg', 'img/benedict.jpg', 'img/cigs.jpg', 'img/countchocula.jpg', 'img/doughnut.jpg', 'img/eggs.jpg', 'img/pancakes.jpg', 'img/parfait.jpg', 'img/pbr.jpg', 'img/toast.jpg', 'img/waffles.jpg'],['A pile of bacon', 'A few bananas', 'Eggs Benedict', 'Cigarettes & Redbull', 'Count Chocula', 'A delicious sprinkled doughnut', 'Scrambled eggs', 'Pancakes', 'A fruit parfait', 'A tasty Pabst', 'Bill Murray Toast', 'Waffles']];
 var imgObjArray = [];
@@ -22,22 +24,36 @@ var populateArray = function() {
 
 function randomizer() {
   if (voting = true) {
-    var randomPicOne = imgObjArray[Math.floor(Math.random() * imgObjArray.length)];
-    var randomPicTwo = imgObjArray[Math.floor(Math.random() * imgObjArray.length)];
-    if (randomPicOne !== randomPicTwo) {
+    if (randomPicOne === randomPicTwo) {
+      randomPicOne = imgObjArray[Math.floor(Math.random() * imgObjArray.length)];
+      randomPicTwo = imgObjArray[Math.floor(Math.random() * imgObjArray.length)];
+      console.log('Rolling Again');
+      randomizer();
+    } else {
       picOneCap.textContent = randomPicOne.name;
       picOne.src = randomPicOne.path;
       picTwoCap.textContent = randomPicTwo.name;
       picTwo.src = randomPicTwo.path;
-    } else {
-      randomizer();
     }
   } else {
     console.log('Voting is currently set to false');
   }
 }
 
+function castVote(event) {
+  event.preventDefault();
+  console.log('User clicked on ' + event.target.src);
+  console.log(randomPicOne.path); //This is temporary
+  if(event.target.src.indexOf(randomPicOne.path) > -1) {
+    randomPicOne.votes += 1;
+    console.log(imgObjArray);
+  } else {
+    randomPicTwo.votes += 1;
+    console.log(imgObjArray);
+  }
+}
 
 populateArray();
 randomizer();
-
+picOne.addEventListener('click', castVote);
+picTwo.addEventListener('click', castVote);
