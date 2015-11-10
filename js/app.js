@@ -18,61 +18,61 @@ function Photo(path, name) {
   imgObjArray.push(this);
 }
 
-var populateArray = function() {
-  for (i=0; i < imgArray[0].length; i++) {
-     new Photo(imgArray[0][i], imgArray[1][i]);
-  }
-};
-
-function randomizer() {
-  if (voting === true) {
-    voteAgain.style.visibility = 'hidden'
-    response.style.visibility = 'hidden'
-    randomPicOne = imgObjArray[Math.floor(Math.random() * imgObjArray.length)];
-    randomPicTwo = imgObjArray[Math.floor(Math.random() * imgObjArray.length)];
-    if (randomPicOne === randomPicTwo) {
-      console.log('Rolling Again');
-      randomizer();
-    } else {
-      picOneCap.textContent = randomPicOne.name;
-      picOne.src = randomPicOne.path;
-      picTwoCap.textContent = randomPicTwo.name;
-      picTwo.src = randomPicTwo.path;
+var tracker = {
+  populateArray: function() {
+    for (i=0; i < imgArray[0].length; i++) {
+       new Photo(imgArray[0][i], imgArray[1][i]);
     }
-  } else {
-    console.log('Voting is currently set to false');
-    voteAgain.style.visibility = 'visible';
-    response.style.visibility = 'visible';
-    response.textContent = randomPicOne.name + ' has ' + randomPicOne.votes + ' vote(s).  ' + randomPicTwo.name + ' has ' + randomPicTwo.votes + ' vote(s).';
-  }
-}
-
-function castVote(event) {
-  event.preventDefault();
-  console.log('User clicked on ' + event.target.src);
-  console.log(randomPicOne.path); //This is temporary
-  if (voting === true) {
-    if(event.target.src.indexOf(randomPicOne.path) > -1) {
-      randomPicOne.votes += 1;
-      voting = false;
-      randomizer();
+  },
+  randomizer: function() {
+    if (voting === true) {
+      voteAgain.style.visibility = 'hidden'
+      response.style.visibility = 'hidden'
+      randomPicOne = imgObjArray[Math.floor(Math.random() * imgObjArray.length)];
+      randomPicTwo = imgObjArray[Math.floor(Math.random() * imgObjArray.length)];
+      if (randomPicOne === randomPicTwo) {
+        console.log('Rolling Again');
+        tracker.randomizer();
+      } else {
+        picOneCap.textContent = randomPicOne.name;
+        picOne.src = randomPicOne.path;
+        picTwoCap.textContent = randomPicTwo.name;
+        picTwo.src = randomPicTwo.path;
+      }
     } else {
-      randomPicTwo.votes += 1;
-      voting = false;
-      randomizer();
+      console.log('Voting is currently set to false');
+      voteAgain.style.visibility = 'visible';
+      response.style.visibility = 'visible';
+      response.textContent = randomPicOne.name + ' has ' + randomPicOne.votes + ' vote(s).  ' + randomPicTwo.name + ' has ' + randomPicTwo.votes + ' vote(s).';
     }
+  },
+  castVote: function(event) {
+    event.preventDefault();
+    console.log('User clicked on ' + event.target.src);
+    console.log(randomPicOne.path); //This is temporary
+    if (voting === true) {
+      if(event.target.src.indexOf(randomPicOne.path) > -1) {
+        randomPicOne.votes += 1;
+        voting = false;
+        tracker.randomizer();
+      } else {
+        randomPicTwo.votes += 1;
+        voting = false;
+        tracker.randomizer();
+      }
+    }
+  },
+  playAgainFunc: function() {
+    event.preventDefault();
+    voting = true;
+    tracker.randomizer();
   }
 }
 
-function playAgainFunc(event) {
-  event.preventDefault();
-  voting = true;
-  randomizer();
-}
 
-populateArray();
-randomizer();
+picOne.addEventListener('click', tracker.castVote);
+picTwo.addEventListener('click', tracker.castVote);
+voteAgain.addEventListener('click', tracker.playAgainFunc);
 
-picOne.addEventListener('click', castVote);
-picTwo.addEventListener('click', castVote);
-voteAgain.addEventListener('click', playAgainFunc);
+tracker.populateArray();
+tracker.randomizer();
