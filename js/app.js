@@ -2,12 +2,14 @@
 var randomPicOne;
 var randomPicTwo;
 var voting = true;
-var imgArray = [['img/bacon.jpg', 'img/bananas.jpg', 'img/benedict.jpg', 'img/cigs.jpg', 'img/countchocula.jpg', 'img/doughnut.jpg', 'img/eggs.jpg', 'img/pancakes.jpg', 'img/parfait.jpg', 'img/pbr.jpg', 'img/toast.jpg', 'img/waffles.jpg'],['A pile of bacon', 'A few bananas', 'Eggs Benedict', 'Cigarettes & Redbull', 'Count Chocula', 'A delicious sprinkled doughnut', 'Scrambled eggs', 'Pancakes', 'A fruit parfait', 'A tasty Pabst', 'Bill Murray Toast', 'Waffles']];
+var imgArray = [['img/bacon.jpg', 'img/bananas.jpg', 'img/benedict.jpg', 'img/cigs.jpg', 'img/countchocula.jpg', 'img/doughnut.jpg', 'img/eggs.jpg', 'img/pancakes.jpg', 'img/parfait.jpg', 'img/pbr.jpg', 'img/toast.jpg', 'img/waffles.jpg'],['A pile of bacon', 'A few bananas', 'Eggs Benedict', 'Cigarettes & Redbull', 'Count Chocula', 'A delicious sprinkled doughnut', 'Scrambled eggs', 'Pancakes', 'A fruit parfait', 'A tasty Pabst', 'Bill Murray Toast', 'Yummy waffles']];
 var imgObjArray = [];
 var picOne = document.getElementById('choiceOne');
 var picOneCap = document.getElementById('choiceOneCap');
 var picTwo = document.getElementById('choiceTwo');
 var picTwoCap = document.getElementById('choiceTwoCap');
+var response = document.getElementById('response');
+var voteAgain = document.getElementById('voteAgain');
 
 function Photo(path, name) {
   this.path = path;
@@ -23,10 +25,12 @@ var populateArray = function() {
 };
 
 function randomizer() {
-  if (voting = true) {
+  if (voting === true) {
+    voteAgain.style.visibility = 'hidden'
+    response.style.visibility = 'hidden'
+    randomPicOne = imgObjArray[Math.floor(Math.random() * imgObjArray.length)];
+    randomPicTwo = imgObjArray[Math.floor(Math.random() * imgObjArray.length)];
     if (randomPicOne === randomPicTwo) {
-      randomPicOne = imgObjArray[Math.floor(Math.random() * imgObjArray.length)];
-      randomPicTwo = imgObjArray[Math.floor(Math.random() * imgObjArray.length)];
       console.log('Rolling Again');
       randomizer();
     } else {
@@ -37,6 +41,9 @@ function randomizer() {
     }
   } else {
     console.log('Voting is currently set to false');
+    voteAgain.style.visibility = 'visible';
+    response.style.visibility = 'visible';
+    response.textContent = randomPicOne.name + ' has ' + randomPicOne.votes + ' votes, and ' + randomPicTwo.name + ' has ' + randomPicTwo.votes + ' votes.';
   }
 }
 
@@ -46,14 +53,23 @@ function castVote(event) {
   console.log(randomPicOne.path); //This is temporary
   if(event.target.src.indexOf(randomPicOne.path) > -1) {
     randomPicOne.votes += 1;
-    console.log(imgObjArray);
+    voting = false;
+    randomizer();
   } else {
     randomPicTwo.votes += 1;
-    console.log(imgObjArray);
+    voting = false;
+    randomizer();
   }
+}
+
+function playAgainFunc(event) {
+  event.preventDefault();
+  voting = true;
+  randomizer();
 }
 
 populateArray();
 randomizer();
 picOne.addEventListener('click', castVote);
 picTwo.addEventListener('click', castVote);
+voteAgain.addEventListener('click', playAgainFunc);
