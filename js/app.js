@@ -43,7 +43,7 @@ function randomizer() {
     console.log('Voting is currently set to false');
     voteAgain.style.visibility = 'visible';
     response.style.visibility = 'visible';
-    response.textContent = randomPicOne.name + ' has ' + randomPicOne.votes + ' votes, and ' + randomPicTwo.name + ' has ' + randomPicTwo.votes + ' votes.';
+    response.textContent = randomPicOne.name + ' has ' + randomPicOne.votes + ' vote(s).  ' + randomPicTwo.name + ' has ' + randomPicTwo.votes + ' vote(s).';
   }
 }
 
