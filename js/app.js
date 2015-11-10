@@ -51,14 +51,16 @@ function castVote(event) {
   event.preventDefault();
   console.log('User clicked on ' + event.target.src);
   console.log(randomPicOne.path); //This is temporary
-  if(event.target.src.indexOf(randomPicOne.path) > -1) {
-    randomPicOne.votes += 1;
-    voting = false;
-    randomizer();
-  } else {
-    randomPicTwo.votes += 1;
-    voting = false;
-    randomizer();
+  if (voting === true) {
+    if(event.target.src.indexOf(randomPicOne.path) > -1) {
+      randomPicOne.votes += 1;
+      voting = false;
+      randomizer();
+    } else {
+      randomPicTwo.votes += 1;
+      voting = false;
+      randomizer();
+    }
   }
 }
 
@@ -70,6 +72,7 @@ function playAgainFunc(event) {
 
 populateArray();
 randomizer();
+
 picOne.addEventListener('click', castVote);
 picTwo.addEventListener('click', castVote);
 voteAgain.addEventListener('click', playAgainFunc);
