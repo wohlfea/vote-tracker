@@ -12,3 +12,5 @@ Button appears to continue playing.  Button disappears upon playing again.
 Nov 10th Update
 ---------------
 Wrapped most functionality into a 'tracker' function.
+Doughnut chart is being displayed.
+When chart is displayed it is slower the firs time and faster from there on out.
