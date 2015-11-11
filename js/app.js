@@ -1,6 +1,5 @@
 /* JS Goes Here */
-var randomPicOne;
-var randomPicTwo;
+
 var theChart;
 var voting = true;
 var imgArray = [['img/bacon.jpg', 'img/bananas.jpg', 'img/benedict.jpg', 'img/cigs.jpg', 'img/countchocula.jpg', 'img/doughnut.jpg', 'img/eggs.jpg', 'img/pancakes.jpg', 'img/parfait.jpg', 'img/pbr.jpg', 'img/toast.jpg', 'img/waffles.jpg'],['A Pile of Bacon', 'A Few Bananas', 'Eggs Benedict', 'Cigarettes & Redbull', 'Count Chocula', 'A Sprinkled Doughnut', 'Scrambled Eggs', 'Pancakes', 'A Fruit Parfait', 'A Tasty Pabst', 'Bill Murray Toast', 'Yummy Waffles'],['#222D3E', '#5E412F', '#F07818', '#F0A830', '#A8A701', '#FEEDB8', '#5E552F','#33223F', '#38300B','#78C0A8', '#200F02', '#1D4918']];
