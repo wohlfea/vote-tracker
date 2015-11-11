@@ -135,6 +135,5 @@ var tracker = {
 picOne.addEventListener('click', tracker.castVote);
 picTwo.addEventListener('click', tracker.castVote);
 voteAgain.addEventListener('click', tracker.playAgainFunc);
-
 tracker.populateArray();
 tracker.router();
