@@ -121,7 +121,7 @@ var tracker = {
     } else {
       theChart = new Chart(canvas).Doughnut(imgObjArray, {
       animationSteps : 100,
-      animationEasing : '',
+      animationEasing : 'easeOutBounce',
       percentageInnerCutout : 25,
       segmentStrokeWidth : 5,
       animateRotate : true,
