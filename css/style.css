@@ -10,6 +10,7 @@ h1 {
 
 figcaption {
   text-align: center;
+  margin-bottom: 10px;
 }
 button {
   padding: 20px;
@@ -18,7 +19,7 @@ button {
   margin-left: auto;
 }
 .winner {
-  box-shadow: 0 0 1em red;
+  box-shadow: 0 0 20px red;
 }
 #picDisplayArea {
   display: flex;

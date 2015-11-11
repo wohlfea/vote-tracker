@@ -3,13 +3,14 @@ var randomPicOne;
 var randomPicTwo;
 var theChart;
 var voting = true;
-var imgArray = [['img/bacon.jpg', 'img/bananas.jpg', 'img/benedict.jpg', 'img/cigs.jpg', 'img/countchocula.jpg', 'img/doughnut.jpg', 'img/eggs.jpg', 'img/pancakes.jpg', 'img/parfait.jpg', 'img/pbr.jpg', 'img/toast.jpg', 'img/waffles.jpg'],['A pile of bacon', 'A few bananas', 'Eggs Benedict', 'Cigarettes & Redbull', 'Count Chocula', 'A delicious sprinkled doughnut', 'Scrambled eggs', 'Pancakes', 'A fruit parfait', 'A tasty Pabst', 'Bill Murray Toast', 'Yummy waffles'],['#222D3E', '#5E412F', '#F07818', '#F0A830', '#A8A701', '#FEEDB8', '#5E552F','#33223F', '#38300B','#78C0A8', '#200F02', '#1D4918']];
+var imgArray = [['img/bacon.jpg', 'img/bananas.jpg', 'img/benedict.jpg', 'img/cigs.jpg', 'img/countchocula.jpg', 'img/doughnut.jpg', 'img/eggs.jpg', 'img/pancakes.jpg', 'img/parfait.jpg', 'img/pbr.jpg', 'img/toast.jpg', 'img/waffles.jpg'],['A Pile of Bacon', 'A Few Bananas', 'Eggs Benedict', 'Cigarettes & Redbull', 'Count Chocula', 'A Sprinkled Doughnut', 'Scrambled Eggs', 'Pancakes', 'A Fruit Parfait', 'A Tasty Pabst', 'Bill Murray Toast', 'Yummy Waffles'],['#222D3E', '#5E412F', '#F07818', '#F0A830', '#A8A701', '#FEEDB8', '#5E552F','#33223F', '#38300B','#78C0A8', '#200F02', '#1D4918']];
 var imgObjArray = [];
 var picOne = document.getElementById('choiceOne');
 var picOneCap = document.getElementById('choiceOneCap');
+var voteCountDisplayOne = document.getElementById('voteCountDisplayOne');
 var picTwo = document.getElementById('choiceTwo');
 var picTwoCap = document.getElementById('choiceTwoCap');
-var response = document.getElementById('response');
+var voteCountDisplayTwo = document.getElementById('voteCountDisplayTwo');
 var voteAgain = document.getElementById('voteAgain');
 var canvas = document.getElementById('theCanvas').getContext('2d');
 
@@ -30,14 +31,17 @@ var tracker = {
     }
   },
   hideResponse: function() {
-    voteAgain.style.visibility = 'hidden'
-    response.style.visibility = 'hidden'
+    //Clearing classes and hiding responses to user
+    voteAgain.style.visibility = 'hidden';
+    voteCountDisplayOne.style.visibility = 'hidden';
+    voteCountDisplayTwo.style.visibility = 'hidden';
     picOne.setAttribute('class', null);
     picTwo.setAttribute('class', null);
   },
   showResponse: function() {
     voteAgain.style.visibility = 'visible';
-    response.style.visibility = 'visible';
+    voteCountDisplayOne.style.visibility = 'visible'
+    voteCountDisplayTwo.style.visibility = 'visible'
   },
   displayRandom: function() {
     tracker.hideResponse();
@@ -65,7 +69,8 @@ var tracker = {
       console.log('Voting is currently set to false');
       tracker.showDiff();
       tracker.showResponse();
-      response.textContent = randomPicOne.name + ' has ' + randomPicOne.value + ' vote(s).  ' + randomPicTwo.name + ' has ' + randomPicTwo.value + ' vote(s).';
+      voteCountDisplayOne.textContent = randomPicOne.value + ' vote(s). ';
+      voteCountDisplayTwo.textContent = randomPicTwo.value + ' vote(s). ';
   },
   showDiff: function() {
     if(randomPicOne.value > randomPicTwo.value) {
@@ -106,8 +111,8 @@ var tracker = {
   },
   displayChart: function() {
     if(theChart){
-    theChart.destroy();
-    theChart = new Chart(canvas).Doughnut(imgObjArray, {
+      theChart.destroy();
+      theChart = new Chart(canvas).Doughnut(imgObjArray, {
       animationSteps : 25,
       animationEasing : '',
       percentageInnerCutout : 25,
