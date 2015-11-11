@@ -109,17 +109,16 @@ var tracker = {
     voting = true;
     tracker.router();
   },
+  refreshSegments: function() {
+    for (var i = 0; i < imgObjArray.length; i++) {
+      theChart.segments[i].value = imgObjArray[i].value;
+    }
+  },
   displayChart: function() {
     if(theChart){
-      theChart.destroy();
-      theChart = new Chart(canvas).Doughnut(imgObjArray, {
-      animationSteps : 25,
-      animationEasing : '',
-      percentageInnerCutout : 25,
-      segmentStrokeWidth : 5,
-      animateRotate : true,
-      animateScale : false
-    })} else {
+      tracker.refreshSegments();
+      theChart.update();
+    } else {
       theChart = new Chart(canvas).Doughnut(imgObjArray, {
       animationSteps : 100,
       animationEasing : '',
