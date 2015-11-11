@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title></title>
   <link rel="stylesheet" href="css/style.css">
+  <script src='chartjs/chart.js'></script>
 </head>
 <body>
   <h1>Vote For Your Favorite Breakfast!</h1>
@@ -13,12 +14,17 @@
       <figcaption id='choiceOneCap' alt=''></figcaption>
       <img src='' id='choiceOne'></img>
     </figure>
+    <canvas id='theCanvas' width='250' height='250'></canvas>
     <figure>
       <figcaption id='choiceTwoCap'></figcaption>
       <img src='' id='choiceTwo'></img>
     </figure>
-    <h4 id='response'></h4>
-    <button id='voteAgain' type='submit'>Okay!</button>
+  </section>
+  <section id='responseArea'>
+    <section id='responseColumn'>
+      <h4 id='response'></h4>
+      <button id='voteAgain' type='submit'>Okay!</button>
+    </section>
   </section>
   <script src='js/app.js'></script>
 </body>

@@ -1,4 +1,38 @@
 /*CSS Goes here */
+body {
+  background-image: url('../img/background.jpg');
+}
+
 h1 {
   color: blue;
+  text-align: center;
+}
+
+figcaption {
+  text-align: center;
+}
+button {
+  padding: 20px;
+  width: 200px;
+  margin-right: auto;
+  margin-left: auto;
+}
+#picDisplayArea {
+  display: flex;
+  justify-content: center;
+}
+
+#responseArea {
+  display: flex;
+  justify-content: center;
+}
+#responseColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#choiceOne, #choiceTwo {
+  border: solid black;
+  border-width: 3px;
 }
