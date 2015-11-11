@@ -17,6 +17,9 @@ button {
   margin-right: auto;
   margin-left: auto;
 }
+.winner {
+  box-shadow: 0 0 1em red;
+}
 #picDisplayArea {
   display: flex;
   justify-content: center;
@@ -35,4 +38,5 @@ button {
 #choiceOne, #choiceTwo {
   border: solid black;
   border-width: 3px;
+
 }

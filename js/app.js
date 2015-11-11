@@ -32,6 +32,8 @@ var tracker = {
   hideResponse: function() {
     voteAgain.style.visibility = 'hidden'
     response.style.visibility = 'hidden'
+    picOne.setAttribute('class', null);
+    picTwo.setAttribute('class', null);
   },
   showResponse: function() {
     voteAgain.style.visibility = 'visible';
@@ -61,8 +63,22 @@ var tracker = {
   },
   respondToUser: function() {
       console.log('Voting is currently set to false');
+      tracker.showDiff();
       tracker.showResponse();
       response.textContent = randomPicOne.name + ' has ' + randomPicOne.value + ' vote(s).  ' + randomPicTwo.name + ' has ' + randomPicTwo.value + ' vote(s).';
+  },
+  showDiff: function() {
+    if(randomPicOne.value > randomPicTwo.value) {
+      //Set class of random Pic one to winner
+      picOne.setAttribute('class', 'winner');
+    } else if (randomPicOne.value < randomPicTwo.value) {
+      //Set class of random pic two to winner
+      picTwo.setAttribute('class', 'winner');
+    } else {
+      //Set class of both to winner
+      picOne.setAttribute('class', 'winner');
+      picTwo.setAttribute('class', 'winner');
+    }
   },
   castVote: function(event) {
     event.preventDefault();
