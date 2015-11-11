@@ -91,15 +91,23 @@ var tracker = {
   displayChart: function() {
     if(theChart){
     theChart.destroy();
-    }
     theChart = new Chart(canvas).Doughnut(imgObjArray, {
-    animationSteps : 100,
-    animationEasing : "easeOutBounce",
-    percentageInnerCutout : 25,
-    segmentStrokeWidth : 5,
-    animateRotate : true,
-    animateScale : false
-    });
+      animationSteps : 25,
+      animationEasing : '',
+      percentageInnerCutout : 25,
+      segmentStrokeWidth : 5,
+      animateRotate : true,
+      animateScale : false
+    })} else {
+      theChart = new Chart(canvas).Doughnut(imgObjArray, {
+      animationSteps : 100,
+      animationEasing : '',
+      percentageInnerCutout : 25,
+      segmentStrokeWidth : 5,
+      animateRotate : true,
+      animateScale : true
+      });
+    }
   }
 }
 
