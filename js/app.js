@@ -74,9 +74,11 @@ var tracker = {
     if(randomPicOne.value > randomPicTwo.value) {
       //Set class of random Pic one to winner
       tracker.picOne.setAttribute('class', 'winner');
+      tracker.picTwo.setAttribute('class', 'inactive');
     } else if (randomPicOne.value < randomPicTwo.value) {
       //Set class of random pic two to winner
       tracker.picTwo.setAttribute('class', 'winner');
+      tracker.picOne.setAttribute('class', 'inactive')
     } else {
       //Set class of both to winner
       tracker.picOne.setAttribute('class', 'winner');
@@ -91,16 +93,16 @@ var tracker = {
   },
   addVote: function() {
     if(event.target.src.indexOf(randomPicOne.path) > -1) {
-        randomPicOne.value += 1;
-        voting = false;
-        tracker.displayChart();
-        tracker.router();
-      } else {
-        randomPicTwo.value += 1;
-        voting = false;
-        tracker.displayChart();
-        tracker.router();
-      }
+      randomPicOne.value += 1;
+      voting = false;
+      tracker.displayChart();
+      tracker.router();
+    } else {
+      randomPicTwo.value += 1;
+      voting = false;
+      tracker.displayChart();
+      tracker.router();
+    }
   },
   playAgainFunc: function() {
     event.preventDefault();
