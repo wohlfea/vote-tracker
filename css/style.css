@@ -29,6 +29,12 @@ button {
   border: none;
   margin-right: auto;
   margin-left: auto;
+  background-color: rgba(120, 192, 168, 0.5);
+  box-shadow: 0 0 2px black;
+}
+button:hover {
+  background-color: rgba(120, 192, 168, 0.9);
+  box-shadow: 0 0 10px black;
 }
 #picDisplayArea {
   display: flex;
@@ -54,7 +60,7 @@ button {
   box-shadow: 0 0 20px #33223F;
 }
 .winner {
-  box-shadow: 0 0 20px red;
+  box-shadow: 0 0 50px red;
 }
 #voteCountDisplayOne, #voteCountDisplayTwo {
   font-family: 'Cutive Mono', ;
