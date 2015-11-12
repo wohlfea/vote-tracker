@@ -31,6 +31,8 @@ button {
   border: none;
   margin-right: auto;
   margin-left: auto;
+  margin-bottom: 50px;
+  margin-top: 50px;
   background-color: rgba(120, 192, 168, 0.5);
   box-shadow: 0 0 2px black;
 }
@@ -38,9 +40,14 @@ button:hover {
   background-color: rgba(120, 192, 168, 0.9);
   box-shadow: 0 0 10px black;
 }
+button:focus {
+  outline: none;
+}
 #picDisplayArea {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
 }
 
 #responseArea {

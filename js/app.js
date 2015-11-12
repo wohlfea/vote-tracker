@@ -28,6 +28,12 @@ var tracker = {
        new Photo(imgArray[0][i], imgArray[1][i], imgArray[2][i]);
     }
   },
+  updateImgArray: function() {
+    imgObjArray = JSON.parse(localStorage.getItem('imgObjArray'));
+  },
+  storeData: function() {
+    localStorage.setItem('imgObjArray', JSON.stringify(imgObjArray));
+  },
   hideResponse: function() {
     //Clearing classes and hiding responses to user
     tracker.voteAgain.style.visibility = 'hidden';
@@ -56,7 +62,7 @@ var tracker = {
     }
   },
   router: function() {
-    if (voting === true) {
+    if (voting) {
       console.log('voting is currently set to True');
       tracker.displayRandom();
     } else {
@@ -87,7 +93,7 @@ var tracker = {
   },
   castVote: function(event) {
     event.preventDefault();
-    if (voting === true) {
+    if (voting) {
       tracker.addVote();
     }
   },
@@ -95,11 +101,13 @@ var tracker = {
     if(event.target.src.indexOf(randomPicOne.path) > -1) {
       randomPicOne.value += 1;
       voting = false;
+      tracker.storeData();
       tracker.displayChart();
       tracker.router();
     } else {
       randomPicTwo.value += 1;
       voting = false;
+      tracker.storeData();
       tracker.displayChart();
       tracker.router();
     }
@@ -134,5 +142,12 @@ var tracker = {
 tracker.picOne.addEventListener('click', tracker.castVote);
 tracker.picTwo.addEventListener('click', tracker.castVote);
 tracker.voteAgain.addEventListener('click', tracker.playAgainFunc);
-tracker.populateArray();
-tracker.router();
+
+if(localStorage.imgObjArray){
+  tracker.updateImgArray();
+  tracker.displayChart();
+  tracker.router();
+} else {
+  tracker.populateArray();
+  tracker.router();
+}
