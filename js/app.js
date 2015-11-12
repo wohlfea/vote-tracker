@@ -56,7 +56,7 @@ var tracker = {
     }
   },
   router: function() {
-    if (voting === true) {
+    if (voting) {
       console.log('voting is currently set to True');
       tracker.displayRandom();
     } else {
@@ -87,7 +87,7 @@ var tracker = {
   },
   castVote: function(event) {
     event.preventDefault();
-    if (voting === true) {
+    if (voting) {
       tracker.addVote();
     }
   },
