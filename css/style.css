@@ -59,6 +59,9 @@ button:hover {
 .standard {
   box-shadow: 0 0 20px #33223F;
 }
+.standard:hover {
+  box-shadow: 0 0 35px #00A871;
+}
 .winner {
   box-shadow: 0 0 50px red;
 }

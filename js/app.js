@@ -91,16 +91,16 @@ var tracker = {
   },
   addVote: function() {
     if(event.target.src.indexOf(randomPicOne.path) > -1) {
-        randomPicOne.value += 1;
-        voting = false;
-        tracker.displayChart();
-        tracker.router();
-      } else {
-        randomPicTwo.value += 1;
-        voting = false;
-        tracker.displayChart();
-        tracker.router();
-      }
+      randomPicOne.value += 1;
+      voting = false;
+      tracker.displayChart();
+      tracker.router();
+    } else {
+      randomPicTwo.value += 1;
+      voting = false;
+      tracker.displayChart();
+      tracker.router();
+    }
   },
   playAgainFunc: function() {
     event.preventDefault();
