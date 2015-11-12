@@ -23,6 +23,8 @@ figcaption {
   margin-bottom: 10px;
 }
 button {
+  font-family: 'Cinzel', serif;
+  font-size: 15px;
   padding: 20px;
   width: 200px;
   border-radius: 10px;
@@ -61,6 +63,9 @@ button:hover {
 }
 .standard:hover {
   box-shadow: 0 0 35px #00A871;
+}
+.inactive {
+  box-shadow: 0 0 20px #33223F;
 }
 .winner {
   box-shadow: 0 0 50px red;

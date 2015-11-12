@@ -74,9 +74,11 @@ var tracker = {
     if(randomPicOne.value > randomPicTwo.value) {
       //Set class of random Pic one to winner
       tracker.picOne.setAttribute('class', 'winner');
+      tracker.picTwo.setAttribute('class', 'inactive');
     } else if (randomPicOne.value < randomPicTwo.value) {
       //Set class of random pic two to winner
       tracker.picTwo.setAttribute('class', 'winner');
+      tracker.picOne.setAttribute('class', 'inactive')
     } else {
       //Set class of both to winner
       tracker.picOne.setAttribute('class', 'winner');
