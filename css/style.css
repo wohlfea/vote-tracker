@@ -1,10 +1,20 @@
 /*CSS Goes here */
 body {
+  font-family: 'Cinzel', serif;
   background-image: url('../img/background.jpg');
+  margin: 0px;
 }
 
+header {
+  background-image: url('../img/headerbg.png');
+  margin-top: 0px;
+  padding: 10px;
+  margin-bottom: 40px;
+  box-shadow: 0 0 10px black;
+}
 h1 {
-  color: blue;
+  color: #33223F;
+  font-weight: bold;
   text-align: center;
 }
 
@@ -15,11 +25,16 @@ figcaption {
 button {
   padding: 20px;
   width: 200px;
+  border-radius: 10px;
+  border: none;
   margin-right: auto;
   margin-left: auto;
+  background-color: rgba(120, 192, 168, 0.5);
+  box-shadow: 0 0 2px black;
 }
-.winner {
-  box-shadow: 0 0 20px red;
+button:hover {
+  background-color: rgba(120, 192, 168, 0.9);
+  box-shadow: 0 0 10px black;
 }
 #picDisplayArea {
   display: flex;
@@ -38,6 +53,15 @@ button {
 
 #choiceOne, #choiceTwo {
   border: solid black;
+  border-radius: 100%;
   border-width: 3px;
-
+}
+.standard {
+  box-shadow: 0 0 20px #33223F;
+}
+.winner {
+  box-shadow: 0 0 50px red;
+}
+#voteCountDisplayOne, #voteCountDisplayTwo {
+  font-family: 'Cutive Mono', ;
 }
