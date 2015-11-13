@@ -32,10 +32,7 @@ button {
   width: 200px;
   border-radius: 10px;
   border: none;
-  margin-right: 50px;
-  margin-left: 50px;
-  margin-bottom: 50px;
-  margin-top: 50px;
+  margin: 50px;
   background-color: rgba(120, 192, 168, 0.5);
   box-shadow: 0 0 2px black;
 }
