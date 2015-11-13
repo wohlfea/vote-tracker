@@ -23,6 +23,19 @@ var tracker = {
   picTwoCap: document.getElementById('choiceTwoCap'),
   voteCountDisplayTwo: document.getElementById('voteCountDisplayTwo'),
   voteAgain: document.getElementById('voteAgain'),
+  clearData: document.getElementById('clearData'),
+  lookForData: function() {
+    if(localStorage.imgObjArray){
+    console.log('Previous session-data detected... Populating Chart');
+    tracker.updateImgArray();
+    tracker.displayChart();
+    tracker.router();
+    } else {
+    console.log('No previous session data detected... Populating Image Array')
+    tracker.populateArray();
+    tracker.router();
+    }
+  },
   populateArray: function() {
     for (i=0; i < imgArray[0].length; i++) {
        new Photo(imgArray[0][i], imgArray[1][i], imgArray[2][i]);
@@ -34,9 +47,16 @@ var tracker = {
   storeData: function() {
     localStorage.setItem('imgObjArray', JSON.stringify(imgObjArray));
   },
+  clearAll: function() {
+    localStorage.clear();
+    imgObjArray = [];
+    tracker.populateArray();
+    tracker.playAgainFunc();
+  },
   hideResponse: function() {
     //Clearing classes and hiding responses to user
     tracker.voteAgain.style.visibility = 'hidden';
+    tracker.clearData.style.visibility = 'hidden';
     tracker.voteCountDisplayOne.style.visibility = 'hidden';
     tracker.voteCountDisplayTwo.style.visibility = 'hidden';
     tracker.picOne.setAttribute('class', 'standard');
@@ -44,6 +64,7 @@ var tracker = {
   },
   showResponse: function() {
     tracker.voteAgain.style.visibility = 'visible';
+    tracker.clearData.style.visibility = 'visible';
     tracker.voteCountDisplayOne.style.visibility = 'visible'
     tracker.voteCountDisplayTwo.style.visibility = 'visible'
   },
@@ -63,14 +84,14 @@ var tracker = {
   },
   router: function() {
     if (voting) {
-      console.log('voting is currently set to True');
+      console.log('Voting is currently set to True');
       tracker.displayRandom();
     } else {
       tracker.respondToUser();
     }
   },
   respondToUser: function() {
-      console.log('Voting is currently set to false');
+      console.log('Voting is currently set to False');
       tracker.showDiff();
       tracker.showResponse();
       tracker.voteCountDisplayOne.textContent = randomPicOne.value + ' vote(s). ';
@@ -138,16 +159,8 @@ var tracker = {
     }
   }
 }
-
 tracker.picOne.addEventListener('click', tracker.castVote);
 tracker.picTwo.addEventListener('click', tracker.castVote);
 tracker.voteAgain.addEventListener('click', tracker.playAgainFunc);
-
-if(localStorage.imgObjArray){
-  tracker.updateImgArray();
-  tracker.displayChart();
-  tracker.router();
-} else {
-  tracker.populateArray();
-  tracker.router();
-}
+tracker.clearData.addEventListener('click', tracker.clearAll);
+tracker.lookForData();
