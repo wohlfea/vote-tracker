@@ -1,0 +1,10 @@
+node_modules/**
+README.md
+USER-STORIES.md
+**.html
+css/**
+chartjs/**
+img/**
+.DS_Store
+.eslintrc
+.eslintignore

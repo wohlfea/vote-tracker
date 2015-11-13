@@ -4,7 +4,8 @@ var imgArray = [['img/bacon.jpg', 'img/bananas.jpg', 'img/benedict.jpg', 'img/ci
 var imgObjArray = [];
 var theChart;
 var canvas = document.getElementById('theCanvas').getContext('2d');
-
+var randomPicOne;
+var randomPicTwo;
 function Photo(path, name, color) {
   this.path = path;
   this.name = name;
@@ -14,7 +15,6 @@ function Photo(path, name, color) {
   this.highlight = '#D0FB32';
   imgObjArray.push(this);
 }
-
 var tracker = {
   picOne: document.getElementById('choiceOne'),
   picOneCap: document.getElementById('choiceOneCap'),
@@ -26,19 +26,17 @@ var tracker = {
   clearData: document.getElementById('clearData'),
   lookForData: function() {
     if(localStorage.imgObjArray){
-    console.log('Previous session-data detected... Populating Chart');
-    tracker.updateImgArray();
-    tracker.displayChart();
-    tracker.router();
+      tracker.updateImgArray();
+      tracker.displayChart();
+      tracker.router();
     } else {
-    console.log('No previous session data detected... Populating Image Array')
-    tracker.populateArray();
-    tracker.router();
+      tracker.populateArray();
+      tracker.router();
     }
   },
   populateArray: function() {
-    for (i=0; i < imgArray[0].length; i++) {
-       new Photo(imgArray[0][i], imgArray[1][i], imgArray[2][i]);
+    for (var i=0; i < imgArray[0].length; i++) {
+      new Photo(imgArray[0][i], imgArray[1][i], imgArray[2][i]);
     }
   },
   updateImgArray: function() {
@@ -65,15 +63,14 @@ var tracker = {
   showResponse: function() {
     tracker.voteAgain.style.visibility = 'visible';
     tracker.clearData.style.visibility = 'visible';
-    tracker.voteCountDisplayOne.style.visibility = 'visible'
-    tracker.voteCountDisplayTwo.style.visibility = 'visible'
+    tracker.voteCountDisplayOne.style.visibility = 'visible';
+    tracker.voteCountDisplayTwo.style.visibility = 'visible';
   },
   displayRandom: function() {
     tracker.hideResponse();
     randomPicOne = imgObjArray[Math.floor(Math.random() * imgObjArray.length)];
     randomPicTwo = imgObjArray[Math.floor(Math.random() * imgObjArray.length)];
     if (randomPicOne === randomPicTwo) {
-      console.log('Rolling Again');
       tracker.router();
     } else {
       tracker.picOneCap.textContent = randomPicOne.name;
@@ -84,18 +81,16 @@ var tracker = {
   },
   router: function() {
     if (voting) {
-      console.log('Voting is currently set to True');
       tracker.displayRandom();
     } else {
       tracker.respondToUser();
     }
   },
   respondToUser: function() {
-      console.log('Voting is currently set to False');
-      tracker.showDiff();
-      tracker.showResponse();
-      tracker.voteCountDisplayOne.textContent = randomPicOne.value + ' vote(s). ';
-      tracker.voteCountDisplayTwo.textContent = randomPicTwo.value + ' vote(s). ';
+    tracker.showDiff();
+    tracker.showResponse();
+    tracker.voteCountDisplayOne.textContent = randomPicOne.value + ' vote(s). ';
+    tracker.voteCountDisplayTwo.textContent = randomPicTwo.value + ' vote(s). ';
   },
   showDiff: function() {
     if(randomPicOne.value > randomPicTwo.value) {
@@ -105,7 +100,7 @@ var tracker = {
     } else if (randomPicOne.value < randomPicTwo.value) {
       //Set class of random pic two to winner
       tracker.picTwo.setAttribute('class', 'winner');
-      tracker.picOne.setAttribute('class', 'inactive')
+      tracker.picOne.setAttribute('class', 'inactive');
     } else {
       //Set class of both to winner
       tracker.picOne.setAttribute('class', 'winner');
@@ -149,16 +144,16 @@ var tracker = {
       theChart.update();
     } else {
       theChart = new Chart(canvas).Doughnut(imgObjArray, {
-      animationSteps : 100,
-      animationEasing : 'easeOutBounce',
-      percentageInnerCutout : 25,
-      segmentStrokeWidth : 5,
-      animateRotate : true,
-      animateScale : true
+        animationSteps : 100,
+        animationEasing : 'easeOutBounce',
+        percentageInnerCutout : 25,
+        segmentStrokeWidth : 5,
+        animateRotate : true,
+        animateScale : true
       });
     }
   }
-}
+};
 tracker.picOne.addEventListener('click', tracker.castVote);
 tracker.picTwo.addEventListener('click', tracker.castVote);
 tracker.voteAgain.addEventListener('click', tracker.playAgainFunc);
