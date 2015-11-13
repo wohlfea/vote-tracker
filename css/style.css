@@ -29,8 +29,8 @@ button {
   width: 200px;
   border-radius: 10px;
   border: none;
-  margin-right: auto;
-  margin-left: auto;
+  margin-right: 50px;
+  margin-left: 50px;
   margin-bottom: 50px;
   margin-top: 50px;
   background-color: rgba(120, 192, 168, 0.5);
@@ -50,13 +50,11 @@ button:focus {
   align-items: center;
 }
 
-#responseArea {
+
+#responseRow {
   display: flex;
-  justify-content: center;
-}
-#responseColumn {
-  display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
 }
 

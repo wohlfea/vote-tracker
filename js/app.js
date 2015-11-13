@@ -23,6 +23,7 @@ var tracker = {
   picTwoCap: document.getElementById('choiceTwoCap'),
   voteCountDisplayTwo: document.getElementById('voteCountDisplayTwo'),
   voteAgain: document.getElementById('voteAgain'),
+  clearData: document.getElementById('clearData'),
   populateArray: function() {
     for (i=0; i < imgArray[0].length; i++) {
        new Photo(imgArray[0][i], imgArray[1][i], imgArray[2][i]);
@@ -34,9 +35,16 @@ var tracker = {
   storeData: function() {
     localStorage.setItem('imgObjArray', JSON.stringify(imgObjArray));
   },
+  clearAll: function() {
+    localStorage.clear();
+    imgObjArray = [];
+    tracker.populateArray();
+    tracker.playAgainFunc();
+  },
   hideResponse: function() {
     //Clearing classes and hiding responses to user
     tracker.voteAgain.style.visibility = 'hidden';
+    tracker.clearData.style.visibility = 'hidden';
     tracker.voteCountDisplayOne.style.visibility = 'hidden';
     tracker.voteCountDisplayTwo.style.visibility = 'hidden';
     tracker.picOne.setAttribute('class', 'standard');
@@ -44,6 +52,7 @@ var tracker = {
   },
   showResponse: function() {
     tracker.voteAgain.style.visibility = 'visible';
+    tracker.clearData.style.visibility = 'visible';
     tracker.voteCountDisplayOne.style.visibility = 'visible'
     tracker.voteCountDisplayTwo.style.visibility = 'visible'
   },
@@ -142,6 +151,7 @@ var tracker = {
 tracker.picOne.addEventListener('click', tracker.castVote);
 tracker.picTwo.addEventListener('click', tracker.castVote);
 tracker.voteAgain.addEventListener('click', tracker.playAgainFunc);
+tracker.clearData.addEventListener('click', tracker.clearAll);
 
 if(localStorage.imgObjArray){
   tracker.updateImgArray();
